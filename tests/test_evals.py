@@ -128,3 +128,31 @@ def test_readme_block_is_filled_from_the_result_files(tmp_path):
     assert text.startswith("before\n") and text.endswith("after\n") and "old text" not in text
     assert "| Negation | 19 of 20 (95%) |" in text and "119 of 142 (84%)" in text
     assert text.count("<!-- RESULTS:START -->") == 1
+
+
+def test_readme_adds_the_fresh_question_table_when_present(tmp_path):
+    from cite.evals import update_readme
+    planted = {"catch_rate_by_kind": {"wrong_number": {"total": 1, "caught": 1, "rate": 1.0}},
+               "planted_claims": 1, "planted_caught": 1, "true_claims": 1, "true_accepted": 1}
+    m = {"questions": 20, "answered": 20, "supported_claims": 80, "cited_claims": 90,
+         "answers_with_every_claim_supported": 11, "uncited_sentences": 0, "avg_searches": 1.0,
+         "latency_p50_s": 7.0, "latency_p95_s": 9.0, "avg_cost_usd": 0.0014}
+    for name, data in (("p.json", planted), ("m.json", m), ("h.json", m)):
+        (tmp_path / name).write_text(json.dumps(data))
+    readme = tmp_path / "README.md"
+    readme.write_text("<!-- RESULTS:START -->\n<!-- RESULTS:END -->\n")
+    update_readme(readme, tmp_path / "p.json", tmp_path / "m.json", tmp_path / "missing.json")
+    assert "fresh questions" not in readme.read_text()
+    update_readme(readme, tmp_path / "p.json", tmp_path / "m.json", tmp_path / "h.json")
+    assert "**Agent on 20 fresh questions**" in readme.read_text() and "80 of 90 (89%)" in readme.read_text()
+
+
+def test_audit_prints_flagged_sentences_with_links(tmp_path, capsys):
+    from cite.evals import main
+    row = {"id": 1, "question": "q", "sources": [{"n": 1, "title": "t", "url": "https://a.test"}],
+           "claims": [{"status": "supported", "sentence": "fine", "note": "", "cites": [1]},
+                      {"status": "partial", "sentence": "flagged one", "note": "1 of 2", "cites": [1, 4]}]}
+    (tmp_path / "questions.jsonl").write_text(json.dumps(row))
+    main(["audit", "--out", str(tmp_path)])
+    out = capsys.readouterr().out
+    assert "1. flagged one" in out and "[1] https://a.test" in out and "[4] missing" in out and "fine" not in out

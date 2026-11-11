@@ -169,7 +169,7 @@ def _pct(a: int, b: int) -> str:
     return f"{a} of {b} ({a / b:.0%})" if b else "n/a"
 
 
-def build_results_block(planted: dict, metrics: dict) -> str:
+def build_results_block(planted: dict, metrics: dict, holdout: dict | None = None) -> str:
     rows = [f"| {KIND_NAMES[k]} | {_pct(v['caught'], v['total'])} |"
             for k, v in planted["catch_rate_by_kind"].items()]
     return "\n".join([
@@ -188,13 +188,31 @@ def build_results_block(planted: dict, metrics: dict) -> str:
         f"| Searches per question | {metrics['avg_searches']} |",
         f"| Time per question (median, slowest 5%) | {metrics['latency_p50_s']} s, {metrics['latency_p95_s']} s |",
         f"| Cost per question | ${metrics['avg_cost_usd']:.5f} |",
+        *(_holdout_rows(holdout) if holdout else []),
     ])
 
 
-def update_readme(readme: Path, planted_path: Path, metrics_path: Path) -> None:
+def _holdout_rows(h: dict) -> list[str]:
+    return [
+        "",
+        f"**Agent on {h['questions']} fresh questions** (run once after the last change, never tuned on)",
+        "",
+        "| Measure | Result |", "|---|---|",
+        f"| Cited sentences fully supported | {_pct(h['supported_claims'], h['cited_claims'])} |",
+        f"| Answers where every sentence was supported | {h['answers_with_every_claim_supported']} of {h['answered']} |",
+        f"| Sentences with no citation | {h['uncited_sentences']} |",
+        f"| Time per question (median, slowest 5%) | {h['latency_p50_s']} s, {h['latency_p95_s']} s |",
+        f"| Cost per question | ${h['avg_cost_usd']:.5f} |",
+    ]
+
+
+def update_readme(readme: Path, planted_path: Path, metrics_path: Path,
+                  holdout_path: Path | None = None) -> None:
     text = readme.read_text()
     start, end = text.index(RESULTS_START), text.index(RESULTS_END)
-    block = build_results_block(json.loads(planted_path.read_text()), json.loads(metrics_path.read_text()))
+    holdout = json.loads(holdout_path.read_text()) if holdout_path and holdout_path.exists() else None
+    block = build_results_block(json.loads(planted_path.read_text()), json.loads(metrics_path.read_text()),
+                                holdout)
     readme.write_text(text[:start + len(RESULTS_START)] + "\n" + block + "\n" + text[end:])
 
 
@@ -214,6 +232,10 @@ def main(argv: list[str] | None = None) -> int:
     p4 = sub.add_parser("readme", help="write the measured numbers into the README Results block")
     p4.add_argument("--out", default="evals/results")
     p4.add_argument("--readme", default="README.md")
+    p4.add_argument("--holdout", default="evals/results_holdout")
+    p5 = sub.add_parser("audit", help="print flagged sentences with their source links, for a hand check")
+    p5.add_argument("--out", default="evals/results")
+    p5.add_argument("--limit", type=int, default=10)
     p3 = sub.add_parser("show", help="print the claims that were not fully supported")
     p3.add_argument("--out", default="evals/results")
     p3.add_argument("--limit", type=int, default=40)
@@ -221,8 +243,24 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "readme":
         out = Path(args.out)
-        update_readme(Path(args.readme), out / "planted.json", out / "questions_metrics.json")
+        update_readme(Path(args.readme), out / "planted.json", out / "questions_metrics.json",
+                      Path(args.holdout) / "questions_metrics.json")
         print(f"Updated {args.readme}")
+        return 0
+
+    if args.cmd == "audit":
+        shown = 0
+        for r in read_results(Path(args.out) / "questions.jsonl"):
+            urls = {s["n"]: s["url"] for s in r.get("sources", [])}
+            for c in r.get("claims", []):
+                if c["status"] == "supported":
+                    continue
+                shown += 1
+                print(f"\n{shown}. {c['sentence']}\n   Checker said: {c['status']}, {c['note']}")
+                for n in c["cites"]:
+                    print(f"   [{n}] {urls.get(n, 'missing')}")
+                if shown >= args.limit:
+                    return 0
         return 0
 
     if args.cmd == "show":

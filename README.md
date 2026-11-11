@@ -88,11 +88,21 @@ Two evals, both repeatable with one command. Model: gpt-4o-mini, temperature 0.
 | Searches per question | 1.03 |
 | Time per question (median, slowest 5%) | 6.99 s, 10.13 s |
 | Cost per question | $0.00142 |
+
+**Agent on 20 fresh questions** (run once after the last change, never tuned on)
+
+| Measure | Result |
+|---|---|
+| Cited sentences fully supported | 76 of 91 (84%) |
+| Answers where every sentence was supported | 8 of 20 |
+| Sentences with no citation | 0 |
+| Time per question (median, slowest 5%) | 9.42 s, 14.26 s |
+| Cost per question | $0.00146 |
 <!-- RESULTS:END -->
 
 **Planted errors** (`make planted`). Twenty short passages about made up people, places and products, so the judge cannot use what it already knows. For each passage there is one true sentence and four sentences with a planted error: a wrong number, a wrong name, an extra fact the passage does not state, and a negation. The eval counts how many wrong sentences the checker catches and how many true sentences it wrongly rejects. This is a synthetic test, so it shows how the checker behaves, not how it will do on every page on the web.
 
-**Thirty questions** (`make questions`). The whole agent answers 30 general questions. The checker grades these answers, so the number is only as trustworthy as the planted error result above. Nobody has read every flagged sentence by hand yet.
+**Thirty questions** (`make questions`). The whole agent answers 30 general questions. The checker grades these answers, so the number is only as trustworthy as the planted error result above. I have not read every flagged sentence against its page by hand, so some flags may be checker mistakes rather than wrong answers.
 
 ### How the numbers changed
 
@@ -107,7 +117,7 @@ Version 1 missed seven planted errors. In four of them the judge quoted a real l
 
 Reading the flagged sentences from the 30 question run showed three kinds. Some are real: the model added a detail that its cited pages do not contain, such as "Balkans". Some were false alarms from my own rules: a "not" check that fired on "cannot" and "without", "United States" against "U.S.", and a rule that rejected every quote shorter than 15 characters, which threw out real evidence like "self healing" and "in 1989". The rest were cases where the judge only saw a few short passages of a long page.
 
-I changed the checker after reading failures from these same 30 questions, so the 88% is measured on a set I tuned against. The planted error result did not drop while I made these changes, which is the guard against simply making the checker looser. A fresh set of questions is the fair next test.
+I changed the checker after reading failures from these same 30 questions, so the 88% is measured on a set I tuned against. The planted error result did not drop while I made these changes, which is the guard against simply making the checker looser. To test that, I wrote 20 new questions after the last change and ran them once, with no changes afterwards. Those are the fresh question results above. They scored lower than the tuning set (84% against 88%), which is what you would expect after tuning on the first set, so 84% is the number I trust.
 
 ## Cost and safety
 

@@ -1,0 +1,19 @@
+{
+ "questions": 20,
+ "answered": 20,
+ "errors": 0,
+ "claims": 91,
+ "cited_claims": 91,
+ "supported_claims": 76,
+ "support_rate": 0.8352,
+ "uncited_sentences": 0,
+ "answers_with_every_claim_supported": 8,
+ "avg_searches": 1.0,
+ "latency_p50_s": 9.42,
+ "latency_p95_s": 14.26,
+ "avg_cost_usd": 0.00146,
+ "total_cost_usd": 0.0293,
+ "stopped": {
+  "done": 20
+ }
+}
