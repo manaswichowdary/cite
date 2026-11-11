@@ -1,0 +1,4 @@
+# Optional: embedding retrieval for the citation checker (CITE_RETRIEVER=embeddings or hybrid).
+# Downloads a small model (all-MiniLM-L6-v2, about 90 MB) the first time it runs.
+-r requirements.txt
+sentence-transformers>=3.0

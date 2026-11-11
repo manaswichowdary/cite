@@ -1,4 +1,4 @@
-.PHONY: test check ask serve planted questions holdout audit readme
+.PHONY: test check ask serve planted questions holdout audit readme rag-setup recheck
 
 test:
 	python -m pytest -q
@@ -26,3 +26,12 @@ audit:
 
 readme:
 	python -m cite.evals readme
+
+rag-setup:
+	pip install -r requirements-rag.txt
+
+# Check the same saved answers again with each way of finding evidence (only the checker runs)
+recheck:
+	python -m cite.evals recheck --results evals/results_holdout/questions.jsonl --retriever words
+	python -m cite.evals recheck --results evals/results_holdout/questions.jsonl --retriever embeddings
+	python -m cite.evals recheck --results evals/results_holdout/questions.jsonl --retriever hybrid

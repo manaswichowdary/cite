@@ -12,6 +12,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
 import math
 import sys
@@ -158,6 +159,36 @@ def run_questions(questions: list[dict], settings: Settings, client, searcher, o
     return metrics
 
 
+# ---------- recheck saved answers with another retriever ----------
+
+def recheck_rows(rows: list[dict], searcher, judge: Judge, retriever, log: Callable[[str], None] = print) -> dict:
+    """Run the checker again on answers that were already written. The answers and their sources
+    stay exactly the same, so any change in the result comes from how evidence is found.
+    Source pages come back from the search cache, so this uses no search credits for cached queries."""
+    out, missing = [], 0
+    for r in rows:
+        if "error" in r:
+            continue
+        by_url = {}
+        for q in r.get("queries", []):
+            for s in searcher.search(q):
+                by_url.setdefault(s.url, s)
+        sources = {s["n"]: by_url[s["url"]] for s in r["sources"] if s["url"] in by_url}
+        missing += sum(1 for s in r["sources"] if s["url"] not in by_url)
+        report = check_answer(r["answer"], sources, judge, retriever=retriever)
+        s = {"cited": report.cited, "supported": report.count("supported"), "uncited": report.count("uncited"),
+             "partial": report.count("partial"), "unsupported": report.count("unsupported")}
+        out.append({"id": r["id"], "question": r["question"], "claims": [asdict(c) for c in report.claims],
+                    "summary": s, "cost_usd": round(report.cost_usd, 6)})
+        log(f"[{r['id']:>2}] {s['supported']}/{s['cited']} supported  {r['question']}")
+    cited = sum(o["summary"]["cited"] for o in out)
+    supported = sum(o["summary"]["supported"] for o in out)
+    return {"retriever": retriever.name, "answers": len(out), "cited_claims": cited, "supported_claims": supported,
+            "support_rate": round(supported / cited, 4) if cited else 0.0,
+            "answers_with_every_claim_supported": sum(1 for o in out if o["claims"] and all(c["status"] == "supported" for c in o["claims"])),
+            "sources_missing_from_cache": missing, "cost_usd": round(sum(o["cost_usd"] for o in out), 4), "rows": out}
+
+
 # ---------- README results ----------
 
 RESULTS_START, RESULTS_END = "<!-- RESULTS:START -->", "<!-- RESULTS:END -->"
@@ -233,6 +264,10 @@ def main(argv: list[str] | None = None) -> int:
     p4.add_argument("--out", default="evals/results")
     p4.add_argument("--readme", default="README.md")
     p4.add_argument("--holdout", default="evals/results_holdout")
+    p6 = sub.add_parser("recheck", help="check saved answers again with another retriever")
+    p6.add_argument("--results", default="evals/results_holdout/questions.jsonl")
+    p6.add_argument("--retriever", default="embeddings", choices=["words", "embeddings", "hybrid"])
+    p6.add_argument("--out", default="evals/results_rag")
     p5 = sub.add_parser("audit", help="print flagged sentences with their source links, for a hand check")
     p5.add_argument("--out", default="evals/results")
     p5.add_argument("--limit", type=int, default=10)
@@ -304,6 +339,19 @@ def main(argv: list[str] | None = None) -> int:
 
     from .search import Searcher
     searcher = Searcher(settings)
+    if args.cmd == "recheck":
+        from .retrieval import make_retriever
+        rows = read_results(Path(args.results))
+        report = recheck_rows(rows, searcher, OpenAIJudge(client, settings.model), make_retriever(args.retriever))
+        name = Path(args.results).parent.name
+        (out / f"recheck_{name}_{args.retriever}.json").write_text(json.dumps(report, indent=1))
+        print(f"\nRetriever: {args.retriever}   cited sentences supported: {report['supported_claims']} of "
+              f"{report['cited_claims']} ({report['support_rate']:.1%})   answers fully supported: "
+              f"{report['answers_with_every_claim_supported']} of {report['answers']}")
+        print(f"Sources missing from the search cache: {report['sources_missing_from_cache']}   "
+              f"Tavily credits used: {searcher.credits_used}   Estimated cost: ${report['cost_usd']:.4f}")
+        print(f"Saved to {out / f'recheck_{name}_{args.retriever}.json'}")
+        return 0
     metrics = run_questions(json.loads(Path(args.questions).read_text()), settings, client, searcher,
                             out, args.limit, args.max_usd)
     print("\n" + json.dumps(metrics, indent=1))

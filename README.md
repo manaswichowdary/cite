@@ -33,7 +33,7 @@ flowchart LR
     T --> A
     A --> R[Answer with numbered citations]
     R --> C[Citation checker]
-    C --> P[Find best passages<br/>in the cited page]
+    C --> P[Find closest passages<br/>embeddings + vector cache]
     P --> J[Judge model<br/>one quote per fact]
     J --> V{Is the quote<br/>really in the page?}
     V --> S[Verdict for each sentence]
@@ -47,6 +47,7 @@ flowchart LR
 | `cite/agent.py` | The agent loop. The model can call one tool, `search_web`. Step limit and a spending cap per question. |
 | `cite/search.py` | Tavily search. Every result is cached on disk, so repeated questions cost nothing. |
 | `cite/checker.py` | The citation checker described above. |
+| `cite/retrieval.py` | Finds the passages of a cited page that a sentence is about: by embeddings (default), by shared words, or both. Page vectors are cached on disk. |
 | `cite/pipeline.py` | Runs one question from search to verdict. Used by the command line, the server and the evals. |
 | `cite/api.py` | FastAPI server that streams progress live. Rate limit per address and a daily spending cap. |
 | `cite/evals.py` | The two evals. |
@@ -59,6 +60,7 @@ flowchart LR
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install -r requirements-rag.txt   # embedding retrieval (optional, falls back to word matching)
 cp .env.example .env          # add your OpenAI and Tavily keys
 python -m cite.check          # prints yes or no for each key
 python -m pytest -q           # no network needed
@@ -123,13 +125,29 @@ Reading the flagged sentences from the 30 question run showed three kinds. Some 
 
 I changed the checker after reading failures from these same 30 questions, so the 88% is measured on a set I tuned against. The planted error result did not drop while I made these changes, which is the guard against simply making the checker looser. To test that, I wrote 20 new questions after the last change and ran them once, with no changes afterwards. Those are the fresh question results above. They scored lower than the tuning set (84% against 88%), which is what you would expect after tuning on the first set, so 84% is the number I trust.
 
+### Finding evidence by meaning
+
+The judge only sees 8 passages from each cited page, so the step that picks those passages decides what evidence it can find. The first version picked passages that shared the most words with the sentence. That misses a page that says the same thing in other words.
+
+Now each page is split into passages, embedded with a small local model (all-MiniLM-L6-v2, runs on a laptop, no API cost), and saved on disk as vectors. For each sentence, the passages closest by cosine similarity go to the judge. Hybrid mode takes 6 by meaning and 2 by shared words.
+
+To compare them fairly, `make recheck` takes the same 20 saved fresh question answers and checks them again three times, changing only how passages are picked. The search results come from the cache, so it costs no Tavily credits and about $0.02 of judge calls per run.
+
+| How passages are picked | Cited sentences supported | Answers fully supported |
+|---|---|---|
+| Shared words | 78 of 91 (85.7%) | 9 of 20 |
+| Embeddings | 81 of 91 (89.0%) | 11 of 20 |
+| Hybrid (6 by meaning, 2 by words) | 81 of 91 (89.0%) | 11 of 20 |
+
+Embeddings found real evidence for 3 more sentences on the same answers. Hybrid did not add anything over embeddings alone, so embeddings is the default. The word match row here is 85.7%, not the 84% above, because the judge model gives slightly different answers on a rerun of the same sentences. That variance is about the same size as the gain, so I read this as a small improvement on 20 questions, not a proven one.
+
 ## Cost and safety
 
 A question costs a fraction of a cent. The agent stops at 8 steps or $0.05 per question. The server refuses new questions after a daily cap (default $0.50) and limits each address to 5 questions a minute. Keys stay in `.env`, which git ignores, and error messages sent to the browser never include details.
 
 ## Known limits
 
-- The checker finds passages by shared words, not meaning, so it can miss a source that says the same thing in different words. The judge sees 8 short passages from each cited page.
+- The judge sees 8 short passages from each cited page. Embeddings find paraphrased evidence better than shared words, but the gain was measured on only 20 questions.
 - Swapping an ordinary lowercase word (for example "swallow" for "sparrow") can slip through when the rest of the quote matches. Numbers, capitalized names and "not" are checked in code; other words rely on the judge.
 - A sentence is checked against one source at a time. A claim that needs two sources together shows as partly supported.
 - The planted error test uses made up facts. Real pages are messier.
@@ -137,7 +155,7 @@ A question costs a fraction of a cent. The agent stops at 8 steps or $0.05 per q
 
 ## What I would do next
 
-- Find passages with embeddings and compare the result with the word match version on the planted eval.
+- Run the embedding comparison on more questions, several times each, to separate the gain from judge variance.
 - Add tracing with Langfuse and an Anthropic option for the agent model.
 - Let a claim combine facts from two sources.
 - Ask the model to repair sentences the checker rejects, then check again.

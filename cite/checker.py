@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Protocol
 
 from .pricing import cost_of
+from .retrieval import Retriever, WordRetriever
 from .search import SearchResult
 
 CITE_RE = re.compile(r"\[(\d+(?:\s*,\s*\d+)*)\]")
@@ -133,14 +134,8 @@ def _words(text: str) -> set[str]:
 
 
 def best_passages(claim: str, page_text: str, top: int = 8) -> list[str]:
-    claim_words = _words(CITE_RE.sub("", claim))
-    if not claim_words:
-        return []
-    need = min(2, len(claim_words))
-    scored = [(len(claim_words & _words(c)), c) for c in split_chunks(page_text)]
-    scored = [s for s in scored if s[0] >= need]
-    scored.sort(key=lambda s: -s[0])
-    return [c for _, c in scored[:top]]
+    """Word match retrieval, kept for callers that do not pass a retriever."""
+    return WordRetriever(top).passages(claim, page_text)
 
 
 def normalize(text: str) -> str:
@@ -241,7 +236,7 @@ class OpenAIJudge:
 # ---------- putting it together ----------
 
 def _check_one(sentence: str, cites: list[int], sources: dict[int, SearchResult],
-               judge: Judge) -> tuple[ClaimCheck, int, float]:
+               judge: Judge, retriever: Retriever) -> tuple[ClaimCheck, int, float]:
     """Check one sentence. Returns the verdict, the number of judge calls and their cost."""
     if not cites:
         return ClaimCheck(sentence, [], "uncited", note="no citation"), 0, 0.0
@@ -253,7 +248,7 @@ def _check_one(sentence: str, cites: list[int], sources: dict[int, SearchResult]
     best_found, calls, cost = 0, 0, 0.0
     for n in (c for c in cites if c in sources):
         page = sources[n].page_text
-        passages = best_passages(sentence, page)
+        passages = retriever.passages(sentence, page)
         if not passages:
             continue
         result = judge.judge(sentence, passages)
@@ -286,14 +281,16 @@ def _check_one(sentence: str, cites: list[int], sources: dict[int, SearchResult]
 
 
 def check_answer(answer: str, sources: dict[int, SearchResult], judge: Judge,
-                 on_claim: Callable[[ClaimCheck], None] | None = None, workers: int = 4) -> CheckReport:
+                 on_claim: Callable[[ClaimCheck], None] | None = None, workers: int = 4,
+                 retriever: Retriever | None = None) -> CheckReport:
     """A sentence is supported only if every fact in it has a quote that really is in one cited page,
     and the quote agrees with the sentence on numbers, names and 'not'. Sentences are checked in
     parallel; results come back in the order of the answer."""
     report = CheckReport()
+    retriever = retriever or WordRetriever()
     jobs = split_claims(answer)
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
-        for claim, calls, cost in pool.map(lambda j: _check_one(j[0], j[1], sources, judge), jobs):
+        for claim, calls, cost in pool.map(lambda j: _check_one(j[0], j[1], sources, judge, retriever), jobs):
             report.claims.append(claim)
             report.judge_calls += calls
             report.cost_usd += cost
