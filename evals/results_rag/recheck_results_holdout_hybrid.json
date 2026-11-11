@@ -1,0 +1,1621 @@
+{
+ "retriever": "hybrid",
+ "answers": 20,
+ "cited_claims": 91,
+ "supported_claims": 81,
+ "support_rate": 0.8901,
+ "answers_with_every_claim_supported": 11,
+ "sources_missing_from_cache": 0,
+ "cost_usd": 0.0215,
+ "rows": [
+  {
+   "id": 1,
+   "question": "What is a content delivery network?",
+   "claims": [
+    {
+     "sentence": "A content delivery network (CDN) is a geographically distributed network of servers designed to deliver web content more efficiently to users by reducing latency and improving performance [1][2][3].",
+     "cites": [
+      1,
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "A content delivery network (CDN) is a group of geographically distributed servers",
+      "that speed up the delivery of web content by bringing it closer to where users are.",
+      "to reduce latency and improve performance."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "CDNs store copies of content in data centers around the world, allowing users to access this content from a server that is closer to their location [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "CDNs use caching in data centers around the world to store copies of content",
+      "allowing users to access websites and applications more quickly through a nearby server"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The primary purpose of a CDN is to enhance the availability and speed of content delivery, which is crucial for data-heavy applications like video streaming and large file downloads [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "The primary purpose of a CDN is to provide high availability and performance by distributing the service spatially relative to end-users.",
+      "CDNs are essential for the fast, reliable delivery of streaming audio and video content."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "CDNs are integral to the internet ecosystem, serving a significant portion of web content, including images, videos, and web pages [1][5].",
+     "cites": [
+      1,
+      5
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "CDNs are a layer in the internet ecosystem.",
+      "CDNs have grown to serve a large portion of Internet content.",
+      "including text, graphics and scripts, downloadable objects (media files, software, and documents), applications (e-commerce, portals), live streaming media, on-demand streaming media, and social media services."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001019
+  },
+  {
+   "id": 2,
+   "question": "How does DNS resolve a domain name?",
+   "claims": [
+    {
+     "sentence": "DNS resolution translates human-readable domain names into machine-readable IP addresses, essential for internet navigation [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "DNS resolution is the process that translates domain names like newrelic.com into machine-readable IP addresses such as 192.0.2.1.",
+      "This essential process transforms human-readable domain names into the numeric IP addresses that computers use to communicate across networks."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The process begins when a user enters a domain name in their browser, prompting the device to check its local DNS cache for the corresponding IP address [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "When you enter a domain name in your browser",
+      "your device first checks its local DNS cache to see if it already knows the IP address"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "If the IP address is not cached, the request is sent to a DNS resolver, which queries a series of DNS servers starting with a root server [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "If the local server does not have the record cached, it sends an iterative query to a Root DNS Server.",
+      "The resolver sends a query to the nearest DNS server.",
+      "DNS resolution can involve multiple servers (Local DNS \u2192 Root \u2192 TLD \u2192 Authoritative server).",
+      "Local DNS \u2192 Root Server"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The root server directs the resolver to the appropriate top-level domain (TLD) server, which then points to the authoritative name server for the specific domain [4].",
+     "cites": [
+      4
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "It contacts a root name server, which directs it to the top-level domain (TLD) server (for example, for .com).",
+      "The TLD server points to the authoritative name server for the specific domain."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Finally, the authoritative server provides the final IP address, completing the resolution process [4].",
+     "cites": [
+      4
+     ],
+     "status": "partial",
+     "source": 4,
+     "quotes": [
+      "The authoritative server provides the final IP address."
+     ],
+     "note": "1 of 2 facts found. Not found: completing the resolution process"
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.000983
+  },
+  {
+   "id": 3,
+   "question": "What is the difference between REST and GraphQL?",
+   "claims": [
+    {
+     "sentence": "REST uses multiple endpoints to represent different resources, while GraphQL operates through a single endpoint for all operations [1][3].",
+     "cites": [
+      1,
+      3
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "REST has multiple endpoints in the form of URLs to define resources.",
+      "GraphQL has a single URL endpoint."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "In REST, the server defines the structure of the data returned, whereas GraphQL allows clients to specify exactly what data they need, resulting in more flexible responses [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "Fixed data per endpoint",
+      "Client specifies exact data needed",
+      "This flexibility empowers clients to shape responses to their exact needs."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "REST APIs are typically weakly typed and may require explicit versioning, while GraphQL is strongly typed and avoids versioning by allowing schema evolution through field deprecation [2][5].",
+     "cites": [
+      2,
+      5
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "REST APIs are weakly typed, and you must build error handling into the surrounding code.",
+      "GraphQL is a strongly typed API architecture, which means that it requires a detailed description of the data, its structure, and data operations in the schema.",
+      "GraphQL requires API backward compatibility. So deleted fields return an error message, or those with a deprecated tag return a warning.",
+      "REST APIs often include versioning in the URL to solve this issue, like However, versioning is not mandatory, and it can lead to errors."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "GraphQL reduces over-fetching and under-fetching of data by enabling clients to request only the necessary information, unlike REST which returns entire datasets tied to specific endpoints [5].",
+     "cites": [
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "Client-specified data requirements: Clients can request exactly the data they need, which reduces over-fetching and under-fetching issues.",
+      "Clients can request exactly the data they need",
+      "REST always returns entire datasets tied to specific endpoints"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.00103
+  },
+  {
+   "id": 4,
+   "question": "What is a race condition in programming?",
+   "claims": [
+    {
+     "sentence": "A race condition is a situation in concurrent programming where multiple threads or processes compete for a shared resource, leading to unpredictable outcomes based on the timing of their execution [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "A \"race condition\" exists when multithreaded (or otherwise parallel) code that would access a shared resource could do so in such a way as to cause unexpected results.",
+      "A race condition occurs when two or more threads can access shared data and they try to change it at the same time.",
+      "Because the thread scheduling algorithm can swap between threads at any time, you don't know the order in which the threads will attempt to access the shared data."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It occurs when two or more processes attempt to access and modify shared data simultaneously, resulting in erroneous behavior [4][5].",
+     "cites": [
+      4,
+      5
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "A race condition happens when two or more processes (or threads) try to change the same data simultaneously",
+      "This creates unexpected behavior or bugs that are difficult to catch and fix."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The final state of the program can depend on which thread or process completes its operation first, making race conditions difficult to detect and fix [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "If the multiple code paths take a different amount of time than expected, they can finish in a different order than expected, which can cause software bugs due to unanticipated behavior.",
+      "A race condition can be difficult to reproduce and debug because the result is nondeterministic and depends on the relative timing between interfering threads."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Race conditions are considered programming errors that can lead to non-deterministic behavior, where the same input may produce different results in different executions [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Race conditions that can cause unintended non-determinacy are programming errors.",
+      "which may but does not generally result in different program behaviors (non-determinacy).",
+      "In different executions of the same program on the same input access events that constitute a race can occur in different order."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.000852
+  },
+  {
+   "id": 5,
+   "question": "How does a blockchain reach consensus?",
+   "claims": [
+    {
+     "sentence": "Blockchain reaches consensus through mechanisms that allow nodes to agree on the validity of transactions and the order in which they are added to the blockchain [1][5].",
+     "cites": [
+      1,
+      5
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Blockchain Consensus operates through a series of steps that allow nodes to validate transactions and agree on the next block to be added to the chain.",
+      "It ensures that all participants in a blockchain system agree on the validity of transactions and the current state of the ledger.",
+      "Regardless of the method, the goal is to ensure that all nodes agree on the same version of the blockchain, preventing forks and maintaining consistency."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "When a transaction is initiated, it is broadcast to the network, where nodes verify its authenticity using cryptographic algorithms [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "When a transaction occurs, it is broadcast to the network",
+      "where nodes verify its authenticity",
+      "where nodes verify its authenticity using cryptographic algorithms"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Consensus is achieved when a majority of nodes agree that a new piece of data fits the blockchain's predetermined set of agreements [2].",
+     "cites": [
+      2
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "when the majority agree, they reach consensus!",
+      "the new piece of data fits with the blockchain\u2019s consensus mechanism, that predetermined set of agreements."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Different consensus mechanisms, such as Proof of Work (PoW) and Proof of Stake (PoS), dictate how nodes validate transactions and add new blocks [3][5].",
+     "cites": [
+      3,
+      5
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "[0:15] These participants must agree on a single version of the blockchain ledger. To do this, they must reach a consensus on which transactions are valid and should be added to the ledger.",
+      "[1:10] Instead of miners solving puzzles, PoS uses validators who stake their crypto as collateral to be selected for adding new blocks."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Once consensus is reached, the new block is added to the blockchain, making the transaction a permanent part of the public ledger [4].",
+     "cites": [
+      4
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "Once the whole network reaches a consensus and the other nodes of the network accept the new block",
+      "it is chained into the blockchain",
+      "the transaction becomes a permanent part of the public ledger"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 5,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001027
+  },
+  {
+   "id": 6,
+   "question": "What is the difference between RAM and storage?",
+   "claims": [
+    {
+     "sentence": "RAM (Random Access Memory) is a type of volatile memory that temporarily holds data for quick access by the CPU, losing all information when the power is turned off [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "RAM is volatile memory",
+      "used by the computer\u2019s processor to store and quickly access data that is actively being used or processed",
+      "it loses its data when the power is turned off"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Storage, such as HDDs or SSDs, is non-volatile and retains data even when the device is powered down, making it suitable for long-term data retention [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "this type of storage is non-volatile, which means it retains information even when a device is powered off.",
+      "it retains data even when the power is off",
+      "making it suitable for holding files, applications, and the operating system over extended periods."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "RAM typically has a smaller capacity (commonly 8GB to 32GB) compared to storage devices, which can range from 256GB to several terabytes [2][5].",
+     "cites": [
+      2,
+      5
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "RAM typically comes in smaller capacities, with 8GB to 32GB being common in modern systems.",
+      "Storage drives offer much larger capacities, commonly ranging from 256GB to multiple terabytes."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The speed of RAM is significantly faster than that of storage, allowing for immediate access to active data, while storage devices are slower but designed for holding larger amounts of data [3][5].",
+     "cites": [
+      3,
+      5
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "Memory is faster than storage.",
+      "Memory can access data and information instantly.",
+      "Storage is slower than memory.",
+      "Storage is slower but has a much larger capacity."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "In summary, RAM serves as a high-speed workspace for active tasks, while storage functions as a long-term repository for files and applications [4][5].",
+     "cites": [
+      4,
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "High-speed workspace for active tasks",
+      "Long-term data repository for OS, apps, and files"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 5,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001221
+  },
+  {
+   "id": 7,
+   "question": "How do noise cancelling headphones work?",
+   "claims": [
+    {
+     "sentence": "Noise-cancelling headphones use active noise control to reduce unwanted ambient sounds by generating sound waves that are out of phase with the noise [2].",
+     "cites": [
+      2
+     ],
+     "status": "partial",
+     "source": 2,
+     "quotes": [
+      "Noise-cancelling headphones use active noise control.",
+      "Noise-cancelling headphones are headphones that reduce unwanted ambient sounds using active noise control (ANC)"
+     ],
+     "note": "2 of 3 facts found. Not found: by generating sound waves that are out of phase with the noise"
+    },
+    {
+     "sentence": "A built-in microphone captures the surrounding noise, and an amplifier creates an inverse sound wave that cancels out the unwanted noise through destructive interference [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "A tiny microphone inside the headphone listens to the noise coming at you",
+      "the headphone instantly builds the exact opposite wave",
+      "This is called destructive interference."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "This technology is particularly effective for consistent, low-frequency sounds, such as engine noise, but less effective for sudden, irregular sounds like speech [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "the best choice for flying would be headphones with hybrid ANC, as they\u2019ll act on both low frequency noises - like the deep rumble of an aircraft",
+      "and on higher frequencies like human voices"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Noise-cancelling headphones differ from passive headphones, which rely solely on physical insulation to block sound [2].",
+     "cites": [
+      2
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Noise-cancelling headphones differ from traditional passive noise-isolating headphones by actively reducing low-frequency environmental sounds rather than relying solely on physical insulation.",
+      "While passive isolation blocks sound through earcup padding or in-ear seals, active noise cancellation uses microphones, amplifiers, and digital signal processing to detect surrounding sound and produce an inverse waveform intended to cancel the incoming noise before it reaches the listener's ears."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 3,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.000802
+  },
+  {
+   "id": 8,
+   "question": "What is plate tectonics?",
+   "claims": [
+    {
+     "sentence": "Plate tectonics is a scientific theory that describes the structure and dynamics of the Earth's lithosphere, which is divided into major and minor tectonic plates that are in constant motion due to internal heat [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Plate tectonics is a scientific theory that explains the structure and dynamics of the Earth\u2019s lithosphere, which is divided into several major and minor tectonic plates.",
+      "Plate tectonics is a scientific theory that explains the structure and dynamics of the Earth\u2019s lithosphere, which is divided into several major and minor tectonic plates.",
+      "which is divided into several major and minor tectonic plates.",
+      "These plates are in constant motion due to the heat from the Earth\u2019s interior."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "This theory explains various geological phenomena, including the formation of earthquakes, volcanoes, mountain ranges, and the drift of continents [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Plate tectonics is a scientific theory that explains the structure and dynamics of the Earth\u2019s lithosphere, which is divided into several major and minor tectonic plates.",
+      "The theory elucidates the formation of earthquakes, volcanoes, and mountain ranges, as well as the processes of continent drift",
+      "The theory elucidates the formation of earthquakes, volcanoes, and mountain ranges, as well as the processes of continent drift",
+      "The theory elucidates the formation of earthquakes, volcanoes, and mountain ranges, as well as the processes of continent drift",
+      "The theory elucidates the formation of earthquakes, volcanoes, and mountain ranges, as well as the processes of continent drift"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The Earth's outer layer, or lithosphere, consists of these tectonic plates that float on a partially molten layer called the asthenosphere, moving at rates of 2 to 15 centimeters per year [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "partial",
+     "source": 2,
+     "quotes": [
+      "Earth\u2019s outermost layer, or lithosphere\u2014made up of the crust and upper mantle\u2014is broken into large rocky plates.",
+      "These plates lie on top of a partially molten layer of rock called the asthenosphere.",
+      "the plates move relative to each other at different rates, from two to 15 centimeters (one to six inches) per year."
+     ],
+     "note": "quote is real but does not match: number not in the quote: 2"
+    },
+    {
+     "sentence": "The theory of plate tectonics evolved from the earlier hypothesis of continental drift proposed by Alfred Wegener in 1912, gaining substantial evidence and acceptance in the 1960s [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "It was first posed as the hypothesis of \u201ccontinental drift\u201d, most notably by Alfred Wegener in 1912",
+      "most notably by Alfred Wegener in 1912",
+      "most of its evidence being realized starting in the 1950s and 1960s"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 3,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001245
+  },
+  {
+   "id": 9,
+   "question": "How do ocean tides work?",
+   "claims": [
+    {
+     "sentence": "Ocean tides are primarily caused by the gravitational pull of the Moon and the Sun, creating bulges of water on the Earth's surface that result in high tides [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Tides are caused by the gravitational pull of the Moon and the Sun on Earth's oceans",
+      "the bulges created by the Moon and the Sun constantly shift around Earth",
+      "the result is higher high tides"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "As the Earth rotates, different locations pass through these tidal bulges, leading to the rise and fall of sea levels, which occurs approximately twice daily [5].",
+     "cites": [
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "As Earth rotates within this layer of water, its landmasses pass through the two bulges.",
+      "Rising and ebbing tides happen as Earth\u2019s landmasses rotate through the tidal bulges created by the Moon\u2019s gravitational pull.",
+      "Most shorelines experience two high and low tides per day."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The gravitational forces exerted by the Moon are stronger on the side of the Earth closest to it, causing a bulge, while a second bulge occurs on the opposite side due to the Earth's rotation [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "the strength of the moon's gravity is strongest at a because it's [2:25] closest to the moon",
+      "the moon pulls on the ocean closest to it and makes it bulge outwards",
+      "this leaves a partial bulge at sea they're not as big as the one at a"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Tides are also influenced by various terrestrial factors, including the shape of ocean basins, coastal geography, and the Coriolis effect [3].",
+     "cites": [
+      3
+     ],
+     "status": "partial",
+     "source": 3,
+     "quotes": [
+      "actual observed tides are strongly modified by terrestrial factors",
+      "including the geometry of ocean basins",
+      "the coriolis effect"
+     ],
+     "note": "3 of 4 facts found. Not found: coastal geography"
+    },
+    {
+     "sentence": "Spring tides occur when the Earth, Moon, and Sun align, resulting in higher high tides and lower low tides, while neap tides occur when they are at right angles, leading to moderate tidal changes [5].",
+     "cites": [
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "Spring tides always happen when the Moon is at the full or new phase, which is when the Sun, Moon and Earth are in alignment.",
+      "their gravitational power combines to make exceptionally high tides where the bulges occur, called spring tides, as well as very low tides where the water has been displaced.",
+      "Neap tides occur around the first and last quarter phase of the Moon, when the Moon\u2019s orbit around Earth brings it perpendicular to the Sun.",
+      "creating the moderate tides called neap tides."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001343
+  },
+  {
+   "id": 10,
+   "question": "What was the Apollo 11 mission?",
+   "claims": [
+    {
+     "sentence": "Apollo 11 was the first mission to land humans on the Moon, launched on July 16, 1969, with astronauts Neil Armstrong, Michael Collins, and Buzz Aldrin aboard [1][5].",
+     "cites": [
+      1,
+      5
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Apollo 11 was launched on July 16, 1969, at 8:32 AM Central Daylight Time (CDT) with the goal of performing the first human landing on the Moon.",
+      "Apollo 11 was launched on July 16, 1969, at 8:32 AM Central Daylight Time (CDT)",
+      "Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \u201cBuzz\u201d Aldrin entered lunar orbit on the afternoon of July 19."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The mission's primary objective was to fulfill President John F. Kennedy's goal of landing a crewed spacecraft on the Moon and returning safely to Earth [2][5].",
+     "cites": [
+      2,
+      5
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth.",
+      "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth.",
+      "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth.",
+      "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "On July 20, 1969, Neil Armstrong and Buzz Aldrin descended to the lunar surface in the Lunar Module, Eagle, while Michael Collins remained in lunar orbit [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "partial",
+     "source": 2,
+     "quotes": [
+      "On July 20, Armstrong and Aldrin entered the LM again, made a final check, and at 100 hours, 12 minutes into the flight, the Eagle undocked and separated from Columbia for visual inspection.",
+      "At about 109 hours, 42 minutes after launch, Armstrong stepped onto the moon. About 20 minutes later, Aldrin followed him.",
+      "Armstrong and Aldrin returned to the CSM with Collins."
+     ],
+     "note": "quote is real but does not match: number not in the quote: 1969"
+    },
+    {
+     "sentence": "Armstrong famously declared, \"That's one small step for [a] man, one giant leap for mankind,\" as he became the first human to step onto the Moon [5].",
+     "cites": [
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "\"That's one small step for [a] man, one giant leap for mankind,\"",
+      "Neil Armstrong pressed his left foot onto the Moon"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The astronauts spent about 21.6 hours on the lunar surface, conducting experiments and collecting samples before rejoining Collins in lunar orbit [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "After just 21.6 hours on the Moon, Eagle\u2019s ascent stage returned to lunar orbit and rejoined Columbia.",
+      "Armstrong and Aldrin collected 21.6 kilograms of samples and deployed a seismometer to measure moonquakes.",
+      "Eagle\u2019s ascent stage returned to lunar orbit and rejoined Columbia."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001505
+  },
+  {
+   "id": 11,
+   "question": "What is the difference between weather and climate?",
+   "claims": [
+    {
+     "sentence": "Weather refers to the short-term atmospheric conditions, such as rain, snow, and temperature, which can change rapidly from minute to minute or hour to hour [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Weather is how the atmosphere behaves at any given moment.",
+      "This includes rain, snow, cloud cover, air pressure, temperatures, flooding, lightning, and so on.",
+      "These are all short-term phenomena lasting the span of a few days to even seconds."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Climate, on the other hand, describes the average weather conditions in a specific area over a long period, typically defined as 30 years or more [4][3].",
+     "cites": [
+      4,
+      3
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "climate can be thought of as an average of weather conditions over time.",
+      "usually defined as 30 years or more."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "While weather is what you experience on a daily basis, climate provides a broader understanding of long-term trends and patterns in atmospheric behavior [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "the weather is what\u2019s currently happening in the atmosphere",
+      "climate is a description of the weather over a long period of time, like months, years, and decades"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Weather can include phenomena like thunderstorms and heatwaves, whereas climate focuses on averages and variability over time [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "Weather shows the way the atmosphere behaves and can change from minute-to-minute, hour-to-hour and day-to-day. There are many components to weather, which include temperature, rain, wind, hail, snow, humidity, flooding, thunderstorms, heatwaves and more.",
+      "Climate describes the average weather conditions over a long period of time."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.000795
+  },
+  {
+   "id": 12,
+   "question": "How does a compiler differ from an interpreter?",
+   "claims": [
+    {
+     "sentence": "A compiler translates the entire source code into machine code before execution, while an interpreter translates code line-by-line during execution [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "The difference is compilers translate this code before executing it",
+      "interpreters translate this code line-by-line as it's being executed"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Compiled programs generally run faster because they are fully translated beforehand, whereas interpreted programs may run slower due to real-time translation [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "Compiled code runs faster in comparison to Interpreted code.",
+      "Execution of the program takes place only after the whole program is compiled.",
+      "Interpreted codes run slower than Compiler.",
+      "Execution of the program happens after every line is checked or evaluated."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Compilers generate an independent executable file, while interpreters do not produce such files and require the source code to run each time [4][2].",
+     "cites": [
+      4,
+      2
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "A compiler produces a standalone executable file after the compilation process, which can be executed without the compiler.",
+      "an interpreter does not generate an independent executable file.",
+      "the interpreter is required to run the program every time."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Compilers can optimize code better since they analyze the entire program at once, while interpreters execute code immediately, which limits optimization opportunities [5][3].",
+     "cites": [
+      5,
+      3
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "A compiler translates the whole program at once",
+      "An interpreter translates and runs the code line by line",
+      "The Interpreter works by line working of Code, that's why Optimization is a little slower compared to Compilers."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001004
+  },
+  {
+   "id": 13,
+   "question": "What is a load balancer?",
+   "claims": [
+    {
+     "sentence": "A load balancer is a networking component or software service that distributes incoming traffic across multiple backend servers to prevent overload and improve performance [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "A load balancer is a networking component or software service",
+      "distributes incoming traffic across multiple backend servers",
+      "helps prevent server overload",
+      "improves application performance"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It acts as an intermediary between client devices and servers, ensuring that requests are directed to the most appropriate server [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "A load balancer acts as an intermediary between client devices and back-end servers",
+      "ensuring that requests are directed to the most appropriate server"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Load balancers can be hardware devices, software applications, or cloud services, each suited for different environments [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "This can be a hardware device",
+      "software application",
+      "or cloud service",
+      "with each being adapted to different environments and requirements"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "They enhance application reliability and availability, especially during peak traffic times, by balancing the load and optimizing resource usage [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "A load balancer helps increase reliability and availability, even in times of high usage and demand, and ensures more uptime and a better user experience.",
+      "Load balancers are used to distribute capacity during peak traffic times, and to increase reliability of applications.",
+      "Load balancing distributes network traffic dynamically across a network of resources that support an application.",
+      "the technique for distributing traffic across multiple web or application server groups to optimize resource utilization is called HTTP(S) load balancing."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.000793
+  },
+  {
+   "id": 14,
+   "question": "What is unit testing?",
+   "claims": [
+    {
+     "sentence": "Unit testing is a software testing method that verifies individual units of code, such as functions or methods, in isolation to ensure they behave as expected [1][3].",
+     "cites": [
+      1,
+      3
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Unit testing is a software testing method",
+      "verifies individual units of code",
+      "typically functions or methods",
+      "in isolation",
+      "behaves as expected"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It is typically automated and written by developers using frameworks like JUnit or pytest [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "usually automated with frameworks like JUnit or pytest",
+      "Written and run by developers",
+      "automated with frameworks like JUnit or pytest"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The primary goal of unit testing is to catch bugs early in the development cycle, improving code quality and maintainability [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "Helps detect defects early in development, reducing the effort required to fix them.",
+      "automate unit tests within the CI/CD pipeline to detect defects early and maintain code quality.",
+      "Encourages modular, maintainable, and independently testable code design."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Unit tests focus on small, functional units of code and do not test the complete behavior of an application [4][5].",
+     "cites": [
+      4,
+      5
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "Focuses on testing small, independent components of an application to verify their functionality.",
+      "Focuses on individual units and does not verify the complete behavior of an application."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "This testing technique helps identify errors in logic, inputs, and outputs before the code reaches production [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "If there are any input, output, or logic-based errors within a code block, your unit tests help you catch them before the bugs reach production.",
+      "If there are any input, output, or logic-based errors within a code block, your unit tests help you catch them before the bugs reach production.",
+      "If there are any input, output, or logic-based errors within a code block, your unit tests help you catch them before the bugs reach production.",
+      "If there are any input, output, or logic-based errors within a code block, your unit tests help you catch them before the bugs reach production."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 5,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001205
+  },
+  {
+   "id": 15,
+   "question": "What is the difference between a stock and a bond?",
+   "claims": [
+    {
+     "sentence": "Stocks represent ownership in a company, while bonds are loans made to a company or government [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Stocks represent partial ownership, or equity, in a company.",
+      "Bonds are loans from you to a company or government."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Stocks can provide variable returns through price appreciation and dividends, whereas bonds typically offer fixed interest payments [2][5].",
+     "cites": [
+      2,
+      5
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Stocks offer variable returns (dividends + price changes)",
+      "Bonds pay predictable interest"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "In terms of risk, stocks are generally considered higher risk due to their volatility, while bonds are viewed as lower risk since they have contractual payment obligations [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Stocks = owning (variable returns, higher risk, greater upside).",
+      "Bonds are generally lower risk than stocks because payments are contractual and bondholders have priority in a bankruptcy."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Bondholders have priority over shareholders in the event of bankruptcy, meaning they are paid before stockholders [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "In insolvency, creditors/bondholders get paid before shareholders.",
+      "In insolvency, creditors/bondholders get paid before shareholders."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Stocks may come with voting rights in company decisions, while bondholders do not have such rights [4].",
+     "cites": [
+      4
+     ],
+     "status": "partial",
+     "source": 4,
+     "quotes": [
+      "stockholders may be able to vote on company matters",
+      "bondholders cannot"
+     ],
+     "note": "quote is real but does not match: the sentence says 'not' but the quote does not"
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.000883
+  },
+  {
+   "id": 16,
+   "question": "How does GPS determine location?",
+   "claims": [
+    {
+     "sentence": "GPS determines location using a network of satellites that continuously send signals to GPS receivers on Earth [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "GPS is a system of 30+ navigation satellites circling Earth.",
+      "They constantly send out signals."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The receiver calculates its distance from at least four satellites by measuring the time it takes for the signals to arrive [2][5].",
+     "cites": [
+      2,
+      5
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "A GPS receiver determines its own location by measuring the time it takes for a signal to arrive at its location from at least four satellites.",
+      "the receiver can use the time measurements to calculate its distance from each satellite."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "This process, known as trilateration, allows the receiver to pinpoint its exact location in three-dimensional space (latitude, longitude, and altitude) [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "GPS works through a technique called trilateration.",
+      "With a third satellite, the device\u2019s location can finally be determined.",
+      "we live in a three-dimensional world",
+      "the fourth satellite also enables us to calculate the altitude of a device, moving us into the third dimension."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "GPS satellites are equipped with atomic clocks, which provide precise timing necessary for accurate distance calculations [5].",
+     "cites": [
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "GPS satellites carry atomic clocks that provide extremely accurate time.",
+      "An atomic clock synchronized to GPS is required in order to compute ranges from these three signals."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The accuracy of GPS can vary, but many receivers can determine location within a few yards, and some can achieve precision within inches [4].",
+     "cites": [
+      4
+     ],
+     "status": "partial",
+     "source": 4,
+     "quotes": [
+      "They can usually determine where you are within a few yards of your actual location.",
+      "More high-tech receivers, though, can figure out where you are to within a few inches!"
+     ],
+     "note": "2 of 3 facts found. Not found: The accuracy of GPS can vary"
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001092
+  },
+  {
+   "id": 17,
+   "question": "What is natural selection?",
+   "claims": [
+    {
+     "sentence": "Natural selection is the process by which individuals with advantageous traits are more likely to survive and reproduce, leading to changes in the traits of a population over generations [1][5].",
+     "cites": [
+      1,
+      5
+     ],
+     "status": "supported",
+     "source": 5,
+     "quotes": [
+      "Individuals with adaptive traits\u2014traits that give them some advantage\u2014are more likely to survive and reproduce.",
+      "Over time, these advantageous traits become more common in the population."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It was first formulated by Charles Darwin and is a key mechanism of evolution [4][5].",
+     "cites": [
+      4,
+      5
+     ],
+     "status": "supported",
+     "source": 4,
+     "quotes": [
+      "The concept of natural selection was first formulated by Charles Darwin (1809\u201382)",
+      "it is still considered to be of paramount importance in evolutionary biology"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The process involves variation among individuals, where some traits enhance survival and reproductive success, while others may be disadvantageous [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "If a single plant produces 100 seeds, most will grow to be nearly identical to the parent plant, but a few will be slightly different.",
+      "Other variations will be highly valued \u2013 thicker sweeter leaves for for example.",
+      "Some variations will be undesirable \u2013 smaller size, bitter taste, vulnerability to disease and so on."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Natural selection operates in a consistent and non-random manner, selecting for traits that improve fitness in a given environment [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Natural selection is the process by which random evolutionary changes are selected for by nature in a consistent, orderly, non-random way.",
+      "Over multiple generations, creatures become more and more fit for survival and reproduction within their specific environments.",
+      "Over multiple generations, creatures become more and more fit for survival and reproduction within their specific environments."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Over time, this leads to the adaptation of species to their environments, contributing to the diversity of life [5].",
+     "cites": [
+      5
+     ],
+     "status": "partial",
+     "source": 5,
+     "quotes": [
+      "Natural selection is the process through which species adapt to their environments."
+     ],
+     "note": "1 of 2 facts found. Not found: contributing to the diversity of life"
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 1,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001135
+  },
+  {
+   "id": 18,
+   "question": "What is a message queue and when is it used?",
+   "claims": [
+    {
+     "sentence": "A message queue is a software component that facilitates asynchronous communication between applications, particularly in microservices and serverless architectures [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "A message queue is a software component that facilitates communication between applications present in microservices and serverless infrastructures.",
+      "A message queue is a software component that facilitates communication between applications present in microservices and serverless infrastructures."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It temporarily stores messages until they are processed, allowing different parts of a system to communicate without needing immediate responses [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "partial",
+     "source": 1,
+     "quotes": [
+      "a message queue provides a lightweight buffer which temporarily stores messages",
+      "allow different parts of a system to communicate"
+     ],
+     "note": "2 of 3 facts found. Not found: without needing immediate responses"
+    },
+    {
+     "sentence": "Message queues are used to decouple applications, manage workloads, and enhance reliability and scalability [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Needing a decoupled way to communicate between applications.",
+      "Getting timeout errors due to too many simultaneous requests.",
+      "enhancing reliability, performance and scalability.",
+      "Needing to scale down or up during peak hours."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Common use cases include email communication, large computations across servers, real-time data transmission, and financial transactions [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "partial",
+     "source": 2,
+     "quotes": [
+      "Email communication",
+      "Performing large computations and tasks across a network of servers",
+      "Payments"
+     ],
+     "note": "3 of 4 facts found. Not found: real-time data transmission"
+    },
+    {
+     "sentence": "They are not suitable for real-time communications where immediate responses are required, such as in HTTP requests [2].",
+     "cites": [
+      2
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Message queues are not for real-time communications.",
+      "You can't use them when you want an immediate response.",
+      "for instance, in an HTTP request where the end user shouldn\u2019t wait for the response."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 3,
+    "uncited": 0,
+    "partial": 2,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001429
+  },
+  {
+   "id": 19,
+   "question": "What is two factor authentication?",
+   "claims": [
+    {
+     "sentence": "Two-factor authentication (2FA) is a security process that requires users to provide two different types of identity verification to access an account [2][3].",
+     "cites": [
+      2,
+      3
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Two-factor authentication (2FA) is a feature that requires a user to present two different types of identity evidence before being allowed to access an account.",
+      "At its core, two-factor authentication follows a process that requires users to provide two different forms of verification before gaining access to their accounts.",
+      "Two-factor authentication (2FA) is a feature that requires a user to present two different types of identity evidence before being allowed to access an account."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Typically, these two factors include something the user knows (like a password) and something the user has (such as a mobile device or security key) [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "Typically, this involves something you know (like a password) and something you have (such as a mobile device or security key).",
+      "Typically, this involves something you know (like a password) and something you have (such as a mobile device or security key)."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "2FA adds an extra layer of protection against unauthorized access, reducing the risk even if a password is compromised [3][5].",
+     "cites": [
+      3,
+      5
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "Two-factor authentication (2FA) is important because it adds an extra layer of security to user accounts, helping prevent unauthorized access.",
+      "This reduces the risk of unauthorized access, even if a password is compromised."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It is a specific type of multi-factor authentication (MFA), which involves using two or more distinct factors for verification [1][4].",
+     "cites": [
+      1,
+      4
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "Multi-factor authentication (MFA), also known as two-factor authentication (2FA), is an electronic authentication method in which a user is granted access to a website or application only after successfully presenting two or more distinct types of evidence (or factors) to an authentication mechanism.",
+      "The use of multiple authentication factors to prove one's identity is based on the premise that an unauthorized actor is unlikely to be able to supply all of the factors required for access."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "This method is widely used to enhance security for online accounts and applications [2][5].",
+     "cites": [
+      2,
+      5
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "Many industries and online platforms are using two-factor authentication to protect their users from potential security breaches and cyber criminals",
+      "Two-factor authentication provides a second layer of protection for a user's online accounts, above and beyond the user's password."
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 5,
+    "supported": 5,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001023
+  },
+  {
+   "id": 20,
+   "question": "What was the Industrial Revolution?",
+   "claims": [
+    {
+     "sentence": "The Industrial Revolution was a transformative period from around 1750 to 1850 that shifted economies from agrarian to industrialized societies, primarily starting in Great Britain [1][3].",
+     "cites": [
+      1,
+      3
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "The Industrial Revolution was a period of profound change between c.1750 and 1850",
+      "new inventions and manufacturing processes transformed the economy and wider society",
+      "The Industrial Revolution began in Britain"
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "It involved significant advancements in manufacturing processes, particularly in textiles, iron production, and steam power, leading to mass production and urbanization [2][4].",
+     "cites": [
+      2,
+      4
+     ],
+     "status": "supported",
+     "source": 2,
+     "quotes": [
+      "The commencement of the Industrial Revolution is closely linked to a small number of innovations, beginning in the second half of the 18th century.",
+      "Rapid adoption of mechanized textiles spinning occurred in Britain in the 1780s.",
+      "high rates of growth in steam power and iron production occurred after 1800.",
+      "The steam engine began being used to power blast air in the 1750s, enabling a large increase in iron production by overcoming the limitation of water power.",
+      "The textile industry was the first to use modern production methods.",
+      "Output greatly increased, and the result was an unprecedented rise in population and population growth."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "Key inventions, such as the steam engine, revolutionized industries and transportation, fundamentally changing how people lived and worked [3][4].",
+     "cites": [
+      3,
+      4
+     ],
+     "status": "supported",
+     "source": 3,
+     "quotes": [
+      "At the heart of the Industrial Revolution were new inventions that fundamentally transformed the British economy.",
+      "the new railway and canal network revolutionised how people travelled",
+      "It changed where people lived, how they worked and what they bought.",
+      "It changed where people lived, how they worked and what they bought."
+     ],
+     "note": ""
+    },
+    {
+     "sentence": "The revolution resulted in unprecedented economic growth and improvements in living standards for many, although it also brought challenges like poor working conditions and environmental pollution [1][2].",
+     "cites": [
+      1,
+      2
+     ],
+     "status": "supported",
+     "source": 1,
+     "quotes": [
+      "the Industrial Revolution had a transformative economic, social and cultural impact",
+      "industrialization increased economic output overall and improved the standard of living for the middle and upper classes",
+      "unsafe working conditions were rife",
+      "environmental pollution from coal and gas are legacies we still struggle with today"
+     ],
+     "note": ""
+    }
+   ],
+   "summary": {
+    "cited": 4,
+    "supported": 4,
+    "uncited": 0,
+    "partial": 0,
+    "unsupported": 0
+   },
+   "cost_usd": 0.001127
+  }
+ ]
+}
