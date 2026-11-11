@@ -4,6 +4,10 @@
 
 A research agent that answers a question with numbered sources, then checks every sentence against the page it cites.
 
+![Cite answering "How does DNS resolve a domain name?" with a proof mark next to every sentence](docs/screenshot.png)
+
+*A real answer from the fresh question eval, shown in the web app. Select a mark to see the quote the checker found, or why it found none.*
+
 ## The problem
 
 Research agents write fluent answers with citations that look right. Often the cited page does not say what the sentence claims. The reader has to open every link to find out.
@@ -46,7 +50,7 @@ flowchart LR
 | `cite/pipeline.py` | Runs one question from search to verdict. Used by the command line, the server and the evals. |
 | `cite/api.py` | FastAPI server that streams progress live. Rate limit per address and a daily spending cap. |
 | `cite/evals.py` | The two evals. |
-| `web/index.html` | One page, no framework. Shows progress, the answer, sources and the verdict for each sentence. |
+| `web/index.html` | One page, no framework. The answer sits on a sheet with a margin of proof marks, one per sentence, and each mark opens the quote that backs it. |
 | `cite/trace.py` | Saves every question and result to a daily log file. |
 
 ## Run it
