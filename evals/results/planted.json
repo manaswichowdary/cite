@@ -1,0 +1,52 @@
+{
+ "passages": 20,
+ "planted_claims": 80,
+ "planted_caught": 78,
+ "catch_rate": 0.975,
+ "catch_rate_by_kind": {
+  "wrong_number": {
+   "total": 20,
+   "caught": 20,
+   "rate": 1.0
+  },
+  "wrong_name": {
+   "total": 20,
+   "caught": 18,
+   "rate": 0.9
+  },
+  "extra_fact": {
+   "total": 20,
+   "caught": 20,
+   "rate": 1.0
+  },
+  "negation": {
+   "total": 20,
+   "caught": 20,
+   "rate": 1.0
+  }
+ },
+ "true_claims": 20,
+ "true_accepted": 20,
+ "true_acceptance_rate": 1.0,
+ "misses": [
+  {
+   "id": "p13",
+   "kind": "wrong_name",
+   "claim": "Adult ridge swallows weigh about 18 grams.",
+   "quotes": [
+    "Adults weigh about 18 grams."
+   ]
+  },
+  {
+   "id": "p17",
+   "kind": "wrong_name",
+   "claim": "The dough for a traditional Ostlin pie rises for about 12 hours before baking.",
+   "quotes": [
+    "The dough rises for about 12 hours before baking."
+   ]
+  }
+ ],
+ "false_alarms": [],
+ "judge_calls": 100,
+ "cost_usd": 0.0066
+}

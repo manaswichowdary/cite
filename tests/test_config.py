@@ -24,3 +24,8 @@ def test_blank_key_counts_as_missing():
 def test_keys_never_appear_in_repr():
     s = load_settings({"OPENAI_API_KEY": "secret-one", "TAVILY_API_KEY": "secret-two"})
     assert "secret" not in repr(s)
+
+
+def test_daily_cap_default_and_override():
+    assert load_settings({}).daily_cap_usd == 0.5
+    assert load_settings({"CITE_DAILY_CAP_USD": "2"}).daily_cap_usd == 2.0

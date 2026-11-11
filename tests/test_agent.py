@@ -105,3 +105,13 @@ def test_bad_arguments_and_search_errors_go_back_to_the_model():
 def test_unknown_model_is_priced_high():
     assert cost_of("some-new-model", 1_000_000, 0) > cost_of("gpt-4o-mini", 1_000_000, 0)
     assert json.dumps(cost_of("gpt-4o-mini", 1_000_000, 1_000_000)) == "0.75"
+
+
+def test_events_report_searches_sources_and_answer():
+    searcher = FakeSearcher({"duckdb": [R("https://a")]})
+    client = FakeClient([reply(calls=[call('{"query": "duckdb"}')]), reply("It is a database [1].")])
+    events = []
+    out = Agent(client, searcher, settings()).ask("q", events.append)
+    assert [e["type"] for e in events] == ["search", "sources", "answer"]
+    assert events[0]["query"] == "duckdb" and events[1]["sources"][0]["url"] == "https://a"
+    assert events[2]["text"] == out.text and out.queries == ["duckdb"]

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cite</title>
+<style>
+  :root { --bg:#fafaf7; --card:#ffffff; --ink:#1d1f23; --muted:#5d6470; --line:#e3e1da; --accent:#1f5eff;
+          --ok:#136c3a; --okbg:#e3f4ea; --warn:#8a5a00; --warnbg:#fdf0d5; --bad:#a1262c; --badbg:#fbe4e5;
+          --none:#4b5563; --nonebg:#eceef1; --onaccent:#ffffff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14161a; --card:#1c1f25; --ink:#eceef2; --muted:#9aa2b0; --line:#2d323b; --accent:#7aa2ff;
+            --ok:#7fd9a1; --okbg:#173325; --warn:#f0c56a; --warnbg:#3a2f12; --bad:#ff9a9f; --badbg:#3d1c1e;
+            --none:#b4bcc9; --nonebg:#2a2f38; --onaccent:#0b1020; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 system-ui, -apple-system, Segoe UI, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:2rem; margin:0 0 4px; letter-spacing:-0.02em; }
+  .sub { color:var(--muted); margin:0 0 24px; }
+  form { display:flex; gap:8px; }
+  input { flex:1; min-width:0; padding:12px 14px; font:inherit; color:var(--ink); background:var(--card);
+          border:1px solid var(--line); border-radius:10px; }
+  button { padding:12px 18px; font:inherit; font-weight:600; color:var(--onaccent); background:var(--accent);
+           border:0; border-radius:10px; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  .examples { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; }
+  .examples button { background:var(--card); color:var(--ink); border:1px solid var(--line); font-weight:400;
+                     padding:6px 12px; font-size:.9rem; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:20px; }
+  section h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 10px; }
+  #log { color:var(--muted); font-size:.9rem; }
+  #answer p { margin:0 0 .6em; white-space:pre-wrap; }
+  #answer a.cite { font-size:.75em; vertical-align:super; text-decoration:none; color:var(--accent); font-weight:600; }
+  ol#sources { margin:0; padding-left:1.4em; }
+  ol#sources li { margin:4px 0; word-break:break-word; }
+  a { color:var(--accent); }
+  .claim { border-top:1px solid var(--line); padding:10px 0; }
+  .claim:first-of-type { border-top:0; }
+  .badge { display:inline-block; font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:999px; margin-right:8px; }
+  .supported { color:var(--ok); background:var(--okbg); }
+  .partial { color:var(--warn); background:var(--warnbg); }
+  .unsupported, .bad_citation { color:var(--bad); background:var(--badbg); }
+  .uncited { color:var(--none); background:var(--nonebg); }
+  .note, .quote { color:var(--muted); font-size:.88rem; margin:4px 0 0; }
+  .quote { font-style:italic; }
+  #summary { font-weight:600; margin:0 0 8px; }
+  #error { color:var(--bad); margin-top:16px; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Cite</h1>
+  <p class="sub">A research agent that checks its own citations. Every sentence is tested against the page it cites.</p>
+
+  <form id="form">
+    <input id="q" type="text" minlength="3" maxlength="300" placeholder="Ask a factual question" aria-label="Question" required>
+    <button id="go" type="submit">Ask</button>
+  </form>
+  <div class="examples" id="examples"></div>
+  <div id="error" role="alert" hidden></div>
+
+  <section id="logbox" hidden><h2>Progress</h2><div id="log"></div></section>
+  <section id="answerbox" hidden><h2>Answer</h2><div id="answer"></div></section>
+  <section id="sourcebox" hidden><h2>Sources</h2><ol id="sources"></ol></section>
+  <section id="claimbox" hidden><h2>Citation check</h2><p id="summary"></p><div id="claims"></div></section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const LABEL = {supported:'Supported', partial:'Partly supported', unsupported:'Not supported',
+               bad_citation:'Bad citation', uncited:'No citation'};
+const EXAMPLES = ['What is the CAP theorem?', 'How does HTTPS keep a connection secure?', 'What is the Doppler effect?'];
+let source = null, sources = {};
+
+for (const text of EXAMPLES) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.textContent = text;
+  b.addEventListener('click', () => { $('q').value = text; start(text); });
+  $('examples').appendChild(b);
+}
+$('form').addEventListener('submit', e => { e.preventDefault(); start($('q').value.trim()); });
+
+function reset() {
+  for (const id of ['logbox','answerbox','sourcebox','claimbox','error']) $(id).hidden = true;
+  for (const id of ['log','answer','sources','claims','summary']) $(id).textContent = '';
+  sources = {};
+}
+function logLine(text) {
+  $('logbox').hidden = false;
+  const d = document.createElement('div'); d.textContent = text; $('log').appendChild(d);
+}
+function fail(message) {
+  $('error').textContent = message; $('error').hidden = false; $('go').disabled = false;
+  if (source) { source.close(); source = null; }
+}
+function renderSources(list) {
+  sources = {}; $('sources').textContent = '';
+  for (const s of list) {
+    sources[s.n] = s.url;
+    const li = document.createElement('li'); li.value = s.n;
+    const a = document.createElement('a'); a.textContent = s.title; a.href = safeUrl(s.url);
+    a.target = '_blank'; a.rel = 'noopener noreferrer';
+    li.appendChild(a); $('sources').appendChild(li);
+  }
+  $('sourcebox').hidden = !list.length;
+}
+function safeUrl(u) { return /^https?:\/\//i.test(u) ? u : '#'; }
+function renderAnswer(text) {
+  $('answerbox').hidden = false; $('answer').textContent = '';
+  for (const line of text.split('\n')) {
+    const clean = line.replace(/^\s*[-*\u2022]\s+/, '');
+    if (!clean.trim()) continue;
+    const p = document.createElement('p');
+    for (const part of clean.split(/(\[\d+\])/)) {
+      const m = part.match(/^\[(\d+)\]$/);
+      if (m && sources[m[1]]) {
+        const a = document.createElement('a'); a.className = 'cite'; a.textContent = part;
+        a.href = safeUrl(sources[m[1]]); a.target = '_blank'; a.rel = 'noopener noreferrer';
+        p.appendChild(a);
+      } else p.appendChild(document.createTextNode(part));
+    }
+    $('answer').appendChild(p);
+  }
+}
+function addClaim(c) {
+  $('claimbox').hidden = false;
+  const div = document.createElement('div'); div.className = 'claim';
+  const badge = document.createElement('span'); badge.className = 'badge ' + c.status; badge.textContent = LABEL[c.status] || c.status;
+  div.appendChild(badge); div.appendChild(document.createTextNode(c.sentence));
+  if (c.note) { const n = document.createElement('div'); n.className = 'note'; n.textContent = c.note; div.appendChild(n); }
+  for (const q of (c.status === 'supported' ? c.quotes : [])) {
+    const d = document.createElement('div'); d.className = 'quote';
+    d.textContent = 'Source ' + c.source + ' says: “' + q + '”'; div.appendChild(d);
+  }
+  $('claims').appendChild(div);
+}
+function start(q) {
+  if (q.length < 3) return;
+  if (source) source.close();
+  reset(); $('go').disabled = true; logLine('Starting...');
+  source = new EventSource('/ask?q=' + encodeURIComponent(q));
+  const on = (name, fn) => source.addEventListener(name, ev => fn(JSON.parse(ev.data)));
+  on('search', d => logLine('Searching: ' + d.query));
+  on('sources', d => renderSources(d.sources));
+  on('answer', d => { logLine('Checking every sentence against its source...'); renderAnswer(d.text); });
+  on('claim', addClaim);
+  on('done', d => {
+    const s = d.summary;
+    $('claimbox').hidden = false;
+    $('summary').textContent = s.supported + ' of ' + s.cited + ' cited sentences supported'
+      + (s.uncited ? ', ' + s.uncited + ' without a citation' : '')
+      + '. Cost $' + d.cost_usd.toFixed(4) + ', ' + d.latency_s + ' seconds.';
+    $('go').disabled = false; source.close(); source = null;
+  });
+  source.addEventListener('error', ev => {
+    if (ev.data) { try { fail(JSON.parse(ev.data).message); } catch { fail('Something went wrong.'); } }
+    else if (source) fail('Could not get an answer. If you asked several questions, wait a minute and try again.');
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+[
+ {
+  "id": "p01",
+  "passage": "The Zorvex 3 laptop was released in March 2023 by Helion Devices. It has a 14 hour battery life and weighs 1.2 kilograms. The base model ships with 16 gigabytes of memory.",
+  "true": "The Zorvex 3 laptop was released in March 2023 by Helion Devices.",
+  "wrong_number": "The Zorvex 3 laptop was released in March 2021 by Helion Devices.",
+  "wrong_name": "The Zorvex 3 laptop was released in March 2023 by Orbis Devices.",
+  "extra_fact": "The Zorvex 3 laptop was released in March 2023 by Helion Devices and won a design award.",
+  "negation": "The Zorvex 3 laptop was not released in March 2023 by Helion Devices."
+ },
+ {
+  "id": "p02",
+  "passage": "Lake Marren is a freshwater lake in northern Veldia with a maximum depth of 212 metres. It covers an area of 480 square kilometres. The lake freezes over completely about once every ten years.",
+  "true": "Lake Marren is a freshwater lake in northern Veldia with a maximum depth of 212 metres.",
+  "wrong_number": "Lake Marren is a freshwater lake in northern Veldia with a maximum depth of 112 metres.",
+  "wrong_name": "Lake Marren is a freshwater lake in northern Torvania with a maximum depth of 212 metres.",
+  "extra_fact": "Lake Marren is a freshwater lake in northern Veldia with a maximum depth of 212 metres and is home to a rare blue trout.",
+  "negation": "Lake Marren is not a freshwater lake in northern Veldia."
+ },
+ {
+  "id": "p03",
+  "passage": "The Kestrel protocol was designed by Dr. Anika Rao in 2017 at the Pellham Institute. It encrypts messages using a 256 bit key. Version 2 added support for group chats of up to 500 members.",
+  "true": "The Kestrel protocol was designed by Dr. Anika Rao in 2017 at the Pellham Institute.",
+  "wrong_number": "The Kestrel protocol was designed by Dr. Anika Rao in 2012 at the Pellham Institute.",
+  "wrong_name": "The Kestrel protocol was designed by Dr. Anika Rao in 2017 at the Calder Institute.",
+  "extra_fact": "The Kestrel protocol was designed by Dr. Anika Rao in 2017 at the Pellham Institute with government funding.",
+  "negation": "The Kestrel protocol was not designed by Dr. Anika Rao at the Pellham Institute."
+ },
+ {
+  "id": "p04",
+  "passage": "Bramwell Bridge opened in 1931 and spans 640 metres across the Oska River. It carries four lanes of traffic and a rail line. A major renovation finished in 1998 cost 31 million dollars.",
+  "true": "Bramwell Bridge opened in 1931 and spans 640 metres across the Oska River.",
+  "wrong_number": "Bramwell Bridge opened in 1931 and spans 460 metres across the Oska River.",
+  "wrong_name": "Bramwell Bridge opened in 1931 and spans 640 metres across the Tamsin River.",
+  "extra_fact": "Bramwell Bridge opened in 1931 and spans 640 metres across the Oska River, making it the longest bridge in the country.",
+  "negation": "Bramwell Bridge does not span 640 metres across the Oska River."
+ },
+ {
+  "id": "p05",
+  "passage": "Quillon sort runs in O(n log n) time in the worst case and uses O(1) extra memory. It was published by Marta Lindqvist in 2015. Benchmarks show it is about 20 percent slower than quicksort on random data.",
+  "true": "Benchmarks show Quillon sort is about 20 percent slower than quicksort on random data.",
+  "wrong_number": "Benchmarks show Quillon sort is about 2 percent slower than quicksort on random data.",
+  "wrong_name": "Benchmarks show Quillon sort is about 20 percent slower than mergesort on random data.",
+  "extra_fact": "Benchmarks show Quillon sort is about 20 percent slower than quicksort on random data but faster on sorted data.",
+  "negation": "Benchmarks show Quillon sort is not slower than quicksort on random data."
+ },
+ {
+  "id": "p06",
+  "passage": "Pellmoor is a fishing town of about 8,400 residents on the east coast of Dunmark. Its annual herring festival began in 1962 and draws roughly 30,000 visitors. The town lighthouse was built in 1874.",
+  "true": "The annual herring festival in Pellmoor began in 1962 and draws roughly 30,000 visitors.",
+  "wrong_number": "The annual herring festival in Pellmoor began in 1962 and draws roughly 3,000 visitors.",
+  "wrong_name": "The annual cod festival in Pellmoor began in 1962 and draws roughly 30,000 visitors.",
+  "extra_fact": "The annual herring festival in Pellmoor began in 1962 and draws roughly 30,000 visitors and is broadcast on national television.",
+  "negation": "The annual herring festival in Pellmoor did not begin in 1962."
+ },
+ {
+  "id": "p07",
+  "passage": "The Aldrin 9 probe launched in October 2019 and reached the asteroid Tessa in August 2022. It carried a spectrometer built by the Norvik Space Agency. The probe collected 4.2 grams of surface dust.",
+  "true": "The Aldrin 9 probe launched in October 2019 and reached the asteroid Tessa in August 2022.",
+  "wrong_number": "The Aldrin 9 probe launched in October 2016 and reached the asteroid Tessa in August 2022.",
+  "wrong_name": "The Aldrin 9 probe launched in October 2019 and reached the asteroid Kellan in August 2022.",
+  "extra_fact": "The Aldrin 9 probe launched in October 2019 and reached the asteroid Tessa in August 2022 where it landed on the surface.",
+  "negation": "The Aldrin 9 probe did not reach the asteroid Tessa in August 2022."
+ },
+ {
+  "id": "p08",
+  "passage": "Brindle Foods employs about 2,300 people across five factories. Its founder, Joseph Okafor, started the company in a rented kitchen in 1989. Revenue last year was 410 million dollars.",
+  "true": "The founder Joseph Okafor started Brindle Foods in a rented kitchen in 1989.",
+  "wrong_number": "The founder Joseph Okafor started Brindle Foods in a rented kitchen in 1998.",
+  "wrong_name": "The founder Joseph Mwangi started Brindle Foods in a rented kitchen in 1989.",
+  "extra_fact": "The founder Joseph Okafor started Brindle Foods in a rented kitchen in 1989 with a loan from his uncle.",
+  "negation": "The founder Joseph Okafor did not start Brindle Foods in a rented kitchen in 1989."
+ },
+ {
+  "id": "p09",
+  "passage": "Tarn is a statically typed language created in 2016 by the Lowell Software Foundation. Its compiler produces code for three platforms: Linux, Windows and macOS. Tarn has no null values; optional data uses a type called Maybe.",
+  "true": "Tarn is a statically typed language created in 2016 by the Lowell Software Foundation.",
+  "wrong_number": "Tarn is a statically typed language created in 2006 by the Lowell Software Foundation.",
+  "wrong_name": "Tarn is a statically typed language created in 2016 by the Harlan Software Foundation.",
+  "extra_fact": "Tarn is a statically typed language created in 2016 by the Lowell Software Foundation and is widely used in banking.",
+  "negation": "Tarn is not a statically typed language created in 2016."
+ },
+ {
+  "id": "p10",
+  "passage": "The Corvane Desert receives less than 90 millimetres of rain per year. Daytime temperatures in July average 41 degrees Celsius. Winter nights can drop below freezing.",
+  "true": "The Corvane Desert receives less than 90 millimetres of rain per year.",
+  "wrong_number": "The Corvane Desert receives less than 900 millimetres of rain per year.",
+  "wrong_name": "The Orsen Desert receives less than 90 millimetres of rain per year.",
+  "extra_fact": "The Corvane Desert receives less than 90 millimetres of rain per year and has no plant life at all.",
+  "negation": "The Corvane Desert does not receive less than 90 millimetres of rain per year."
+ },
+ {
+  "id": "p11",
+  "passage": "The Hallow Museum of Textiles opened in 2005 in a converted mill in Ashby. It holds over 12,000 items, the oldest dating to 1620. Admission is free on the first Sunday of each month.",
+  "true": "The Hallow Museum of Textiles holds over 12,000 items, the oldest dating to 1620.",
+  "wrong_number": "The Hallow Museum of Textiles holds over 12,000 items, the oldest dating to 1520.",
+  "wrong_name": "The Hallow Museum of Ceramics holds over 12,000 items, the oldest dating to 1620.",
+  "extra_fact": "The Hallow Museum of Textiles holds over 12,000 items, the oldest dating to 1620, and has a rooftop cafe.",
+  "negation": "The Hallow Museum of Textiles does not hold over 12,000 items."
+ },
+ {
+  "id": "p12",
+  "passage": "The Northline Express connects Ravick and Dornfield in 3 hours and 20 minutes. It runs eight times a day and has 420 seats per train. A one way adult ticket costs 38 euros.",
+  "true": "A one way adult ticket on the Northline Express costs 38 euros.",
+  "wrong_number": "A one way adult ticket on the Northline Express costs 83 euros.",
+  "wrong_name": "A one way adult ticket on the Southline Express costs 38 euros.",
+  "extra_fact": "A one way adult ticket on the Northline Express costs 38 euros and includes a meal.",
+  "negation": "A one way adult ticket on the Northline Express does not cost 38 euros."
+ },
+ {
+  "id": "p13",
+  "passage": "The ridge sparrow is a small bird native to the highlands of Ostrava Province. Adults weigh about 18 grams. It feeds mainly on seeds and builds nests in low shrubs.",
+  "true": "Adult ridge sparrows weigh about 18 grams.",
+  "wrong_number": "Adult ridge sparrows weigh about 81 grams.",
+  "wrong_name": "Adult ridge swallows weigh about 18 grams.",
+  "extra_fact": "Adult ridge sparrows weigh about 18 grams and migrate south every winter.",
+  "negation": "Adult ridge sparrows do not weigh about 18 grams."
+ },
+ {
+  "id": "p14",
+  "passage": "Plumbline is an open source tool for tracking database migrations. Version 4.1 was released in September 2024 and added support for PostgreSQL 16. The project has about 9,000 stars on GitHub.",
+  "true": "Plumbline version 4.1 was released in September 2024 and added support for PostgreSQL 16.",
+  "wrong_number": "Plumbline version 4.1 was released in September 2014 and added support for PostgreSQL 16.",
+  "wrong_name": "Plumbline version 4.1 was released in September 2024 and added support for MySQL 8.",
+  "extra_fact": "Plumbline version 4.1 was released in September 2024 and added support for PostgreSQL 16 while dropping Windows support.",
+  "negation": "Plumbline version 4.1 did not add support for PostgreSQL 16."
+ },
+ {
+  "id": "p15",
+  "passage": "The Treaty of Salmere ended the Eleven Year War in 1743. It was signed by representatives of three kingdoms in the city of Salmere. The treaty returned the border province of Kirsk to Alvania.",
+  "true": "The Treaty of Salmere ended the Eleven Year War in 1743.",
+  "wrong_number": "The Treaty of Salmere ended the Eleven Year War in 1734.",
+  "wrong_name": "The Treaty of Salmere ended the Seven Year War in 1743.",
+  "extra_fact": "The Treaty of Salmere ended the Eleven Year War in 1743 and created a permanent peace council.",
+  "negation": "The Treaty of Salmere did not end the Eleven Year War in 1743."
+ },
+ {
+  "id": "p16",
+  "passage": "The Delmar Hawks won their first league title in 1999. Their stadium seats 24,500 fans. The team coach since 2018 is Rita Valdez.",
+  "true": "The coach of the Delmar Hawks since 2018 is Rita Valdez.",
+  "wrong_number": "The coach of the Delmar Hawks since 2008 is Rita Valdez.",
+  "wrong_name": "The coach of the Delmar Hawks since 2018 is Rita Morales.",
+  "extra_fact": "The coach of the Delmar Hawks since 2018 is Rita Valdez, who previously played for the national team.",
+  "negation": "The coach of the Delmar Hawks since 2018 is not Rita Valdez."
+ },
+ {
+  "id": "p17",
+  "passage": "A traditional Ostlin loaf is made with rye flour and caraway seeds. The dough rises for about 12 hours before baking. It is baked at 220 degrees Celsius for 45 minutes.",
+  "true": "The dough for a traditional Ostlin loaf rises for about 12 hours before baking.",
+  "wrong_number": "The dough for a traditional Ostlin loaf rises for about 2 hours before baking.",
+  "wrong_name": "The dough for a traditional Ostlin pie rises for about 12 hours before baking.",
+  "extra_fact": "The dough for a traditional Ostlin loaf rises for about 12 hours before baking in a cold cellar.",
+  "negation": "The dough for a traditional Ostlin loaf does not rise for about 12 hours before baking."
+ },
+ {
+  "id": "p18",
+  "passage": "Vantor University was founded in 1887 and has about 21,000 students. Its main campus is in the city of Merrow. The engineering school is ranked first in the country for research funding.",
+  "true": "Vantor University was founded in 1887 and its main campus is in the city of Merrow.",
+  "wrong_number": "Vantor University was founded in 1987 and its main campus is in the city of Merrow.",
+  "wrong_name": "Vantor University was founded in 1887 and its main campus is in the city of Marlow.",
+  "extra_fact": "Vantor University was founded in 1887 and its main campus is in the city of Merrow, home to a famous rowing team.",
+  "negation": "Vantor University was not founded in 1887."
+ },
+ {
+  "id": "p19",
+  "passage": "The Ellis Savings Index tracks the average household savings rate in the country of Brevia. It stood at 6.4 percent in the second quarter. The figure is published every quarter by the Brevian Statistics Office.",
+  "true": "The Ellis Savings Index stood at 6.4 percent in the second quarter.",
+  "wrong_number": "The Ellis Savings Index stood at 4.6 percent in the second quarter.",
+  "wrong_name": "The Ellis Savings Index stood at 6.4 percent in the third quarter.",
+  "extra_fact": "The Ellis Savings Index stood at 6.4 percent in the second quarter, its highest level in a decade.",
+  "negation": "The Ellis Savings Index did not stand at 6.4 percent in the second quarter."
+ },
+ {
+  "id": "p20",
+  "passage": "The Tarsis wind farm has 48 turbines with a combined capacity of 210 megawatts. It began operating in 2021 off the coast of Wexmoor. The farm supplies electricity to about 150,000 homes.",
+  "true": "The Tarsis wind farm began operating in 2021 off the coast of Wexmoor.",
+  "wrong_number": "The Tarsis wind farm began operating in 2012 off the coast of Wexmoor.",
+  "wrong_name": "The Tarsis wind farm began operating in 2021 off the coast of Belmar.",
+  "extra_fact": "The Tarsis wind farm began operating in 2021 off the coast of Wexmoor and is owned by a public company.",
+  "negation": "The Tarsis wind farm did not begin operating in 2021 off the coast of Wexmoor."
+ }
+]

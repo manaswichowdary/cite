@@ -14,6 +14,7 @@ def main() -> int:
     print(f"Model: {s.model}")
     print(f"Spending cap per question: ${s.max_usd_per_question:.2f}")
     print(f"Max agent steps: {s.max_steps}")
+    print(f"Daily cap for the web server: ${s.daily_cap_usd:.2f}")
     return 0 if (s.has_openai and s.has_tavily) else 1
 
 

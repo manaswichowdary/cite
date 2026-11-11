@@ -17,6 +17,7 @@ class Settings:
     model: str = "gpt-4o-mini"
     max_usd_per_question: float = 0.05
     max_steps: int = 8
+    daily_cap_usd: float = 0.50     # the web server refuses new questions after this much spend
 
     @property
     def has_openai(self) -> bool:
@@ -38,4 +39,5 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         model=env.get("CITE_MODEL", "gpt-4o-mini"),
         max_usd_per_question=float(env.get("CITE_MAX_USD_PER_QUESTION", "0.05")),
         max_steps=int(env.get("CITE_MAX_STEPS", "8")),
+        daily_cap_usd=float(env.get("CITE_DAILY_CAP_USD", "0.50")),
     )
